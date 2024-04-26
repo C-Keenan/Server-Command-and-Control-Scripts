@@ -15,6 +15,7 @@ then
 elif [ $HOSTNAME == 'CamsGamingPC']
 then
     echo 'Success!'
+    bash ~/scripts/bash/copy
 else
     clear
     echo $(base64 --decode ~/scripts/messages/failure-to-launch.txt)
