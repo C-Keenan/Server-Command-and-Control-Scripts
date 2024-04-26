@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cp -r /mnt/g/scripts/Server-Command-and-Control-Scripts/bash ~/scripts
+cp -r /mnt/g/scripts/Server-Command-and-Control-Scripts/messages ~/scripts
