@@ -12,7 +12,7 @@ then
 elif [ $HOSTNAME == 'prox1' ]
 then
     echo 'Success!'
-elif [ $HOSTNAME == 'CamsGamingPC']
+elif [ $HOSTNAME == 'CamsGamingPC' ]
 then
     echo 'Success!'
     bash ~/scripts/bash/copy
