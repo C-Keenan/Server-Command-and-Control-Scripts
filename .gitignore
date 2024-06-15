@@ -5,22 +5,7 @@ dist/
 # Ignore dependency directories
 node_modules/
 vendor/
-*/1/
-*/2/
-*/3/
-*/4/
-*/5/
-*/6/
-*/7/
-*/8/
-*/9/
-*/10/
-*/11/
-*/12/
-*/13/
-*/sshkeys/
-*/ssh-keys/
-*/ssh_keys/
+env/
 
 # Ignore IDE and editor files
 .idea/
@@ -56,15 +41,14 @@ Thumbs.db
 .env.*.local
 .env.*.production
 .env.production
+*.env
 
 # Ignore sensitive or private information
-secrets.txt
 credentials.json
 */sshkeys/*
 */ssh-keys/*
 */ssh_keys/*
 
 # Ignore files specific to your project
-putlc.ahk
-Project-Notes.txt
+
 # Add any additional files or directories to ignore below this line

