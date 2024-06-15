@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+kill -9 $(pgrep -f initialize)
+kill -9 $(pgrep -f server-control)
+kill -9 $(pgrep -f dep-installer)
+kill -9 $(pgrep -f dep-updater)
+kill -9 $(pgrep -f backup)
+kill -9 $(pgrep -f host-backup)
+exit

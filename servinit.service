@@ -8,6 +8,7 @@ Restart=always
 WorkingDirectory=/usr/local/servinit
 User=root
 Group=root
+ExecStop=/usr/local/servinit/bash/stop
 
 [Install]
 WantedBy=multi-user.target
