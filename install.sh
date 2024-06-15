@@ -7,6 +7,7 @@ then
   cp -r ./bash /usr/local/servinit
   cp -r ./messages /usr/local/servinit
   cp ./servinit.service /etc/systemd/system
+  chmod +x /usr/local/servinit/bash/*
   echo "Installed necessary files to the 'proper' directories. Starting service."
   systemctl daemon-reload
   systemctl enable servinit 2>>./errors.log
