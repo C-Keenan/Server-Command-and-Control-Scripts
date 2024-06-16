@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-
-ip=$(nslookup prox1.lollypopstealer.com | grep Address | awk 'FNR==2{print $0}' | colrm 1 9)
-
 if [ $HOSTNAME == 'docker-server-1' ]
 then
     bash /usr/local/servinit/bash/dep-installer
@@ -37,21 +34,6 @@ then
       bash /usr/local/servinit/bash/dep-updater
       bash /usr/local/servinit/bash/host-backup
       sleep 86400
-    done
-elif [ $HOSTNAME == 'CamsGamingPC' ]
-then
-    bash ${HOME}/scripts/bash/copy
-    bash ${HOME}/scripts/bash/test
-    bash ${HOME}/scripts/bash/dep-installer
-    bash ${HOME}/scripts/bash/dep-updater
-    bash ${HOME}/scripts/bash/backup
-    echo 'Success!'
-    x=10
-    while [ $x -ge 1 ]
-    do
-      x=$(($x - 1))
-      sleep 1
-      echo $x
     done
 else
     clear
