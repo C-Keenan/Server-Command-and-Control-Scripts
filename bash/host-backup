@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-cp -r ${HOME}/docker ${HOME}/backup 2>>$logd\/errors.log >> $logd\/standard.log
+cp -r ${HOME}/docker ${HOME}/backup/${HOSTNAME} 2>>$logd\/errors.log >> $logd\/standard.log
