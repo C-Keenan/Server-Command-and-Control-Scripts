@@ -5,6 +5,7 @@ fi
 logd=/var/log/servinit
 while true
 do
+  sleep 900
   pgrep -f server-control >> $logd\/standard.log
   if [ $? -eq 1 ]
   then
