@@ -12,13 +12,14 @@ then
   cp ./servinit.service /etc/systemd/system
   chmod +x /usr/local/servinit/bash/*
   echo "Installed necessary files to the 'proper' directories. Starting service."
+  echo "Please ensure you have added ${USER}'s ssh public key to the host system for 'backup' function to work properly."
   systemctl daemon-reload
   systemctl enable servinit 2>>./errors.log
   systemctl start servinit 2>>./errors.log
   if [ $? -eq 0 ]
   then
     echo "The service has been started and enabled. Check the /var/log/servinit directory for logs."
-  elif [ $? -eq 1 ]
+  elif [ $? -ge 1 ]
   then
     echo "Servinit service not properly started. Please run 'systemctl status servinit' to investigate."
   fi
