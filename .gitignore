@@ -50,5 +50,6 @@ credentials.json
 */ssh_keys/*
 
 # Ignore files specific to your project
+private-notes.md
 
 # Add any additional files or directories to ignore below this line
