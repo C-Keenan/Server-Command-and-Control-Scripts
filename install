@@ -2,15 +2,18 @@
 if [ "$EUID" -eq 0 ]
 then
   if [ ! -d /usr/local/servinit ]
-    then mkdir -p /usr/local/servinit
+  then 
+    mkdir -p /usr/local/servinit
   fi
   if [ ! -d /var/log/servinit ]
-  then mkdir -p /var/log/servinit
+  then 
+    mkdir -p /var/log/servinit
   fi
   cp -r ./bash /usr/local/servinit
   cp -r ./messages /usr/local/servinit
   cp ./servinit.service /etc/systemd/system
   chmod +x /usr/local/servinit/bash/*
+  bash /usr/local/servinit/bash/dep-installer
   echo "Installed necessary files to the 'proper' directories. Starting service."
   echo "Please ensure you have added ${USER}'s ssh public key to the host system for 'backup' function to work properly."
   systemctl daemon-reload

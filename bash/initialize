@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 if [ ! -d /var/log/servinit ]
-  then mkdir -p /var/log/servinit
+then 
+  mkdir -p /var/log/servinit
+fi
+if [ ! -d /tmp/servinit ]
+then
+  mkdir -p /tmp/servinit
 fi
 logd=/var/log/servinit
 while true

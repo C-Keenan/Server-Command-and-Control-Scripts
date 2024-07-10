@@ -1,42 +1,43 @@
 #!/usr/bin/env bash
+stime=86400
 if [ $HOSTNAME == 'docker-server-1' ]
 then
-    bash /usr/local/servinit/bash/dep-installer
     while true
     do
+      bash /usr/local/servinit/bash/lpas
       bash /usr/local/servinit/bash/dep-updater
       bash /usr/local/servinit/bash/backup
-      sleep 86400
+      sleep $stime
     done
 elif [ $HOSTNAME == 'docker-server-2' ]
 then
-    bash /usr/local/servinit/bash/dep-installer
     while true
     do
+      bash /usr/local/servinit/bash/lpas
       bash /usr/local/servinit/bash/dep-updater
       bash /usr/local/servinit/bash/backup
-      sleep 86400
+      sleep $stime
     done
 elif [ $HOSTNAME == 'docker-server-3' ]
 then
-    bash /usr/local/servinit/bash/dep-installer
     while true
     do
+      bash /usr/local/servinit/bash/lpas
       bash /usr/local/servinit/bash/dep-updater
       bash /usr/local/servinit/bash/backup
-      sleep 86400
+      sleep $stime
     done
 elif [ $HOSTNAME == 'prox1' ]
 then
-    bash /usr/local/servinit/bash/dep-installer
     while true
     do
+      bash /usr/local/servinit/bash/lpas
       bash /usr/local/servinit/bash/dep-updater
       bash /usr/local/servinit/bash/host-backup
-      sleep 86400
+      sleep $stime
     done
 else
     clear
-    echo $(base64 --decode /usr/local/servinit/messages/failure-to-launch.txt)
+    echo "$(base64 --decode /usr/local/servinit/messages/failure-to-launch.txt)"
     exit 1
 fi

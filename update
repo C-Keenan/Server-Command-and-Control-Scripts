@@ -9,7 +9,7 @@ then
   chmod +x /usr/local/servinit/bash/*
   echo "Updated necessary files. Starting service."
   systemctl daemon-reload 2>>$logd\/errors.log >> $logd\/standard.log
-  systemctl restart servinit 2>>$logd\/errors.log >> $logd\/standard.log
+  systemctl start servinit 2>>$logd\/errors.log >> $logd\/standard.log
   if [ $? -eq 0 ]
   then
     echo "The service has been restarted. Check the /var/log/servinit directory for logs."
