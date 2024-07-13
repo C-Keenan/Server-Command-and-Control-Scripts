@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 logd=/var/log/servinit
 when=$(date --date='1 day ago' +%m-%d-%y)
-if [ -f /var/log/servinit/errors.log ]
+if [ -f $logd/errors.log ]
 then
     if [ -f /usr/local/servinit/servinit-logs.tar.gz ]
     then
         mkdir -p /tmp/servinit/new
         mkdir -p /tmp/servinit/old
-        cp /var/log/servinit/standard.log /tmp/servinit/new/standard.$when.log
-        cp /var/log/servinit/errors.log /tmp/servinit/new/errors.$when.log
+        cp $logd/standard.log /tmp/servinit/new/standard.$when.log
+        cp $logd/errors.log /tmp/servinit/new/errors.$when.log
         for fi in /var/log/servinit/standard.log /var/log/servinit/errors.log ; do sed -i "s/$(cat $fi)//g" $fi ; done
         tar -xzf servinit-logs.tar.gz -C /tmp/servinit/old
         tar -czf servinit-logs.tar.gz /tmp/servinit/new /tmp/servinit/old
     else
         mkdir -p /tmp/servinit/new
-        cp /var/log/servinit/standard.log /tmp/servinit/new/standard.$when.log
-        cp /var/log/servinit/errors.log /tmp/servinit/new/errors.$when.log
+        cp $logd/standard.log /tmp/servinit/new/standard.$when.log
+        cp $logd/errors.log /tmp/servinit/new/errors.$when.log
         for fi in /var/log/servinit/standard.log /var/log/servinit/errors.log ; do sed -i "s/$(cat $fi)//g" $fi ; done
         tar -czf servinit-logs.tar.gz /tmp/servinit/new
     fi
 else
-    echo 'The file /var/log/servinit/errors.log does not exist. This is likely because this is the first run of the service.'
+    echo "The file $logd/errors.log does not exist. This is likely because this is the first run of the service and it was not created properly."
 fi
