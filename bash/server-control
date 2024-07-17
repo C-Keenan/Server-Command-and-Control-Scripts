@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 stime=86400
-if [ $HOSTNAME == 'docker-server-1' ]
+if [ "$HOSTNAME" == "docker-server-1" ]
 then
     while true
     do
@@ -9,7 +9,7 @@ then
       bash /usr/local/servinit/bash/backup
       sleep $stime
     done
-elif [ $HOSTNAME == 'docker-server-2' ]
+elif [ "$HOSTNAME" == "docker-server-2" ]
 then
     while true
     do
@@ -18,7 +18,7 @@ then
       bash /usr/local/servinit/bash/backup
       sleep $stime
     done
-elif [ $HOSTNAME == 'docker-server-3' ]
+elif [ "$HOSTNAME" == "docker-server-3" ]
 then
     while true
     do
@@ -27,13 +27,22 @@ then
       bash /usr/local/servinit/bash/backup
       sleep $stime
     done
-elif [ $HOSTNAME == 'prox1' ]
+elif [ "$HOSTNAME" == "prox1" ]
 then
     while true
     do
       bash /usr/local/servinit/bash/lpas
       bash /usr/local/servinit/bash/dep-updater
       bash /usr/local/servinit/bash/host-backup
+      sleep $stime
+    done
+elif [ "$HOSTNAME" == "testing-22.04" ]
+then
+    while true
+    do
+      bash /usr/local/servinit/bash/lpas
+      bash /usr/local/servinit/bash/dep-updater
+      bash /usr/local/servinit/bash/backup
       sleep $stime
     done
 else

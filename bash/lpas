@@ -9,14 +9,14 @@ then
         mkdir -p /tmp/servinit/old
         cp $logd/standard.log /tmp/servinit/new/standard.$when.log
         cp $logd/errors.log /tmp/servinit/new/errors.$when.log
-        for fi in /var/log/servinit/standard.log /var/log/servinit/errors.log ; do sed -i "s/$(cat $fi)//g" $fi ; done
+        for fi in /var/log/servinit/standard.log /var/log/servinit/errors.log ; do sed -i "s.$(cat $fi)..g" $fi ; done
         tar -xzf servinit-logs.tar.gz -C /tmp/servinit/old
         tar -czf servinit-logs.tar.gz /tmp/servinit/new /tmp/servinit/old
     else
         mkdir -p /tmp/servinit/new
         cp $logd/standard.log /tmp/servinit/new/standard.$when.log
         cp $logd/errors.log /tmp/servinit/new/errors.$when.log
-        for fi in /var/log/servinit/standard.log /var/log/servinit/errors.log ; do sed -i "s/$(cat $fi)//g" $fi ; done
+        for fi in /var/log/servinit/standard.log /var/log/servinit/errors.log ; do sed -i "s.$(cat $fi)..g" $fi ; done
         tar -czf servinit-logs.tar.gz /tmp/servinit/new
     fi
 else

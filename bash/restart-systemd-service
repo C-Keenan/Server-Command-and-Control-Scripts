@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+if [ -f /usr/bin/sudo ]
+then
+    if [ $EUID -eq 0 ]
+    then
+        if [ $1 == "" ]
+        then
+            echo "You didn't provide any input, please provide the name of the systemd service you would like restarted."
+        elif [ $1 != "" ]
+        then
+            systemctl restart $1
+        elif [ $2 != "" ]
+        then
+            systemctl restart $1 $2
+        elif [ $3 != "" ]
+        then
+            systemctl restart $1 $2 $3
+        elif [ $4 != "" ]
+        then
+            systemctl restart $1 $2 $3 $4
+        elif [ $5 != "" ]
+        then
+            systemctl restart $1 $2 $3 $4 $5
+        elif [ $6 != "" ]
+        then
+            echo "Too many services listed, please only input a maximum of 5 systemd services and run again."
+        fi
+    elif [ $EUID -ge 1000 ]
+    then
+        groups $USER | grep sudo
+        if [ $? -eq 0 ]
+        then
+            if [ $1 == "" ]
+            then
+                echo "You didn't provide any input, please provide the name of the systemd service you would like restarted."
+            elif [ $1 != "" ]
+            then
+                sudo systemctl restart $1
+            elif [ $2 != "" ]
+            then
+                sudo systemctl restart $1 $2
+            elif [ $3 != "" ]
+            then
+                sudo systemctl restart $1 $2 $3
+            elif [ $4 != "" ]
+            then
+                sudo systemctl restart $1 $2 $3 $4
+            elif [ $5 != "" ]
+            then
+                sudo systemctl restart $1 $2 $3 $4 $5
+            elif [ $6 != "" ]
+            then
+                echo "Too many services listed, please only input a maximum of 5 systemd services and run again."
+            fi
+        else
+            echo "$USER is not a sudoer! Please ask your administrator to add you to the sudo group."
+        fi
+    fi
+elif ! [ -f /usr/bin/sudo ]
+then
+    if [ $1 == "" ]
+    then
+        echo "You didn't provide any input, please provide the name of the systemd service you would like restarted."
+    elif [ $1 != "" ]
+    then
+        systemctl restart $1
+    elif [ $2 != "" ]
+    then
+        systemctl restart $1 $2
+    elif [ $3 != "" ]
+    then
+        systemctl restart $1 $2 $3
+    elif [ $4 != "" ]
+    then
+        systemctl restart $1 $2 $3 $4
+    elif [ $5 != "" ]
+    then
+        systemctl restart $1 $2 $3 $4 $5
+    elif [ $6 != "" ]
+    then
+        echo "Too many services listed, please only input a maximum of 5 systemd services and run again."
+    fi
+fi
