@@ -27,7 +27,7 @@ then
         fi
     elif [ $EUID -ge 1000 ]
     then
-        groups $USER | grep sudo
+        groups $USER | grep sudo >/dev/null
         if [ $? -eq 0 ]
         then
             if [ $1 == "" ]
