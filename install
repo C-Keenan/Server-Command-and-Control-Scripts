@@ -29,7 +29,7 @@ then
   elif [ $? -eq 1 ]
   then
     echo "Entry does not exist. Adding now."
-    echo "if [-f /etc/.bash_aliases ]; then" >> /etc/bash.bashrc
+    echo "if [ -f /etc/.bash_aliases ]; then" >> /etc/bash.bashrc
     echo "    . /etc/bash_aliases" >> /etc/bash.bashrc
     echo "fi" >> /etc/bash.bashrc
     echo "Entry added."
