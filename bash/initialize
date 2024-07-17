@@ -8,7 +8,7 @@ then
   mkdir -p /tmp/servinit
 fi
 logd=/var/log/servinit
-grep -F 'if [-f /etc/.bash_aliases ]' /etc/bash.bashrc
+grep -F 'if [ -f /etc/.bash_aliases ]' /etc/bash.bashrc
 if [ $? -eq 0 ]
 then
   echo "Entry exists. Skipping addition."
