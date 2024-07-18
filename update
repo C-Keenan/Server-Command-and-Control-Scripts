@@ -17,6 +17,17 @@ then
     echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
     echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
   fi
+  if [ $? -eq 0 ]
+  then
+    echo "Entry exists. Skipping addition."
+  elif [ $? -eq 1 ]
+  then
+    echo "Entry does not exist. Adding now."
+    echo "if [ -f /etc/.bash_aliases ]; then" >> /etc/bash.bashrc
+    echo "    . /etc/.bash_aliases" >> /etc/bash.bashrc
+    echo "fi" >> /etc/bash.bashrc
+    echo "Entry added."
+  fi
   echo "Updated necessary files. Starting service."
   systemctl daemon-reload 2>>$logd\/errors.log >> $logd\/standard.log
   systemctl start servinit 2>>$logd\/errors.log >> $logd\/standard.log
