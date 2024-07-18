@@ -17,6 +17,7 @@ then
     echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
     echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
   fi
+  grep -F 'if [ -f /etc/.bash_aliases ]' /etc/bash.bashrc
   if [ $? -eq 0 ]
   then
     echo "Entry exists. Skipping addition."
