@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 logd=/var/log/servinit
-for package in bsdutils bsdmainutils bsdextrautils containerd.io dnsutils docker-ce docker-ce-cli docker-buildx-plugin docker-compose-plugin jq nano dc bc;
+for package in acl bc bsdutils bsdmainutils bsdextrautils containerd.io dnsutils docker-ce docker-ce-cli docker-buildx-plugin docker-compose-plugin jq nano;
 do
     if dpkg-query -W -f='${Status}' $package 2>>$logd\/errors.log | grep -q "install ok installed"; then
         echo "$package exists! Skipping" >> $logd\/standard.log
@@ -8,7 +8,7 @@ do
         if [ "$EUID" -eq 0 ]
           then apt install -y $package 2>>$logd\/errors.log >> $logd\/standard.log
         else
-          echo "Not running as root user! Exiting!" >> $logd\/errors.log
+          echo "Not running as root user! Exiting!" >> $logd\/errors.log exit 1
         fi
     fi
 done

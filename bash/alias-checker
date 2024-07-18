@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+logd=/var/log/servinit
+if [ -f /etc/.bash_aliases ]
+then
+    echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
+    echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
+elif ! [ -f /etc/.bash_aliases ]
+then
+    touch /etc/.bash_aliases
+    echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
+    echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
+fi
+x=$(awk 'END{print NR}' /etc/passwd)
+while [ $x -gt 0 ]
+do
+    user=$(cat /etc/passwd | awk -F ":" '{print $1}' | sed -n ''$x'p')
+    if [ -f "/home/$user/.bashrc" ]; then
+        if grep -Fq 'if [ -f /etc/.bash_aliases ]' "/home/$user/.bashrc"; then
+            echo "Entry exists. Skipping addition." 2>>$logd\/errors.log >> $logd\/standard.log
+        else
+            echo "Entry does not exist. Adding now." 2>>$logd\/errors.log >> $logd\/standard.log
+            echo "if [ -f /etc/.bash_aliases ]; then" >> /home/"$user"/.bashrc
+            echo "    . /etc/.bash_aliases" >> /home/"$user"/.bashrc
+            echo "fi" >> /home/"$user"/.bashrc
+            echo "Entry added." 2>>$logd\/errors.log >> $logd\/standard.log
+        fi
+    else
+        echo "No .bashrc file detected. Skipping" 2>>$logd\/errors.log >> $logd\/standard.log
+    fi
+    x=$((x-1))
+done
+if grep -Fq 'if [ -f /etc/.bash_aliases ]' "/etc/bash.bashrc"; then
+    echo "Entry exists. Skipping addition." 2>>$logd\/errors.log >> $logd\/standard.log
+else
+    echo "Entry does not exist. Adding now." 2>>$logd\/errors.log >> $logd\/standard.log
+    echo "if [ -f /etc/.bash_aliases ]; then" >> /etc/bash.bashrc
+    echo "    . /etc/.bash_aliases" >> /etc/bash.bashrc
+    echo "fi" >> /etc/bash.bashrc
+    echo "Entry added." 2>>$logd\/errors.log >> $logd\/standard.log
+fi
+if grep -Fq 'if [ -f /etc/.bash_aliases ]' "/etc/skel/.bashrc"; then
+    echo "Entry exists. Skipping addition." 2>>$logd\/errors.log >> $logd\/standard.log
+else
+    echo "Entry does not exist. Adding now." 2>>$logd\/errors.log >> $logd\/standard.log
+    echo "if [ -f /etc/.bash_aliases ]; then" >> /etc/skel/.bashrc
+    echo "    . /etc/.bash_aliases" >> /etc/skel/.bashrc
+    echo "fi" >> /etc/bash.bashrc
+    echo "Entry added." 2>>$logd\/errors.log >> $logd\/standard.log
+fi

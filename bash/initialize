@@ -8,21 +8,10 @@ then
   mkdir -p /tmp/servinit
 fi
 logd=/var/log/servinit
-grep -F 'if [ -f /etc/.bash_aliases ]' /etc/bash.bashrc
-if [ $? -eq 0 ]
-then
-  echo "Entry exists. Skipping addition."
-elif [ $? -eq 1 ]
-then
-  echo "Entry does not exist. Adding now."
-  echo "if [ -f /etc/.bash_aliases ]; then" >> /etc/bash.bashrc
-  echo "    . /etc/.bash_aliases" >> /etc/bash.bashrc
-  echo "fi" >> /etc/bash.bashrc
-  echo "Entry added."
-fi
+bash /usr/local/servinit/bash/alias-checker
+sleep 900
 while true
 do
-  sleep 900
   pgrep -f server-control >> $logd\/standard.log
   if [ $? -eq 1 ]
   then
