@@ -7,6 +7,16 @@ then
   cp -r ./messages /usr/local/servinit
   cp ./servinit.service /etc/systemd/system
   chmod +x /usr/local/servinit/bash/*
+  if [ -f /etc/.bash_aliases ]
+  then
+    echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
+    echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
+  elif ! [ -f /etc/.bash_aliases ]
+  then
+    touch /etc/.bash_aliases
+    echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
+    echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
+  fi
   echo "Updated necessary files. Starting service."
   systemctl daemon-reload 2>>$logd\/errors.log >> $logd\/standard.log
   systemctl start servinit 2>>$logd\/errors.log >> $logd\/standard.log

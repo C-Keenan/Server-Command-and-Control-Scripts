@@ -17,10 +17,12 @@ then
   if [ -f /etc/.bash_aliases ]
   then
     echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
+    echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
   elif ! [ -f /etc/.bash_aliases ]
   then
     touch /etc/.bash_aliases
     echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
+    echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
   fi
   grep -F 'if [ -f /etc/.bash_aliases ]' /etc/bash.bashrc
   if [ $? -eq 0 ]

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+x=$1
+re='^[0-9]+$'
+if ! [[ $x =~ $re ]]
+then
+   echo "$x is not a number. Please run again and enter the number of seconds to wait." >&2; exit 1
+fi
+if [ "$x" == '' ]
+then
+    echo "Please run again and enter the number of seconds to wait."
+else
+    clear
+    while [ $x -gt 0 ]
+    do
+        printf '%dh:%dm:%ds\n' $(($x/3600)) $(($x%3600/60)) $(($x%60))
+        x=$((x-1))
+        sleep 1
+        clear
+    done
+    echo "Time is up!"
+    printf '\b'
+fi
