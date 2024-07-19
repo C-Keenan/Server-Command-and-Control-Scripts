@@ -2,8 +2,18 @@
 logd=/var/log/servinit
 if [ -f /etc/.bash_aliases ]
 then
-    echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
-    echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
+    if grep -Fq "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" "/etc/.bash_aliases"; then
+        als="alias restart='bash /usr/local/servinit/bash/restart-systemd-service'"
+        echo "$als already exists skipping" 2>>$logd\/errors.log >> $logd\/standard.log
+    else
+        echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
+    fi
+    if grep -Fq "alias timer='bash /usr/local/servinit/bash/timer'" "/etc/.bash_aliases"; then
+        als="alias timer='bash /usr/local/servinit/bash/timer'"
+        echo "$als already exists skipping" 2>>$logd\/errors.log >> $logd\/standard.log
+    else
+        echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
+    fi
 elif ! [ -f /etc/.bash_aliases ]
 then
     touch /etc/.bash_aliases

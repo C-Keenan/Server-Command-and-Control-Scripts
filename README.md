@@ -1,15 +1,18 @@
 # Server Command And Control Scripts
 
-
-
-
-
 ## Release Notes
+
+### Release 07/19/2024
+
+- Woke up, thought "There's a bug in my script!", fixed it. You're welcome! 😁
+Specifically there was a bug that makes multiple 'same-content' entries in /etc/.bash_aliases But it should be fixed now.
+
+- Specifically if you have downloaded and installed/updated to yesterdays update please edit your /etc/.bash_aliases file to ensure there is only one occurence of the 'timer' and 'restart' aliases
 
 ### Release 07/18/2024
 
-- Added functionality for a simple timer
-simply type
+- Added functionality for a simple timer.
+Simply type
 
 ```
 timer <number of seconds>
