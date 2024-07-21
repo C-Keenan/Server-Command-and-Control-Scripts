@@ -2,6 +2,10 @@
 
 ## Release Notes
 
+### Release 07/21/2024
+
+- Found another bug in the /etc/skel/.bashrc file if statement input-er (not sure of a better way to say that) it incorrectly appended the 'fi' into /etc/bash.bashrc file. Fixed now.
+
 ### Release 07/19/2024
 
 - Woke up, thought "There's a bug in my script!", fixed it. You're welcome! 😁

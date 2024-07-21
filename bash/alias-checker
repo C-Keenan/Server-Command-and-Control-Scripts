@@ -54,6 +54,6 @@ else
     echo "Entry does not exist. Adding now." 2>>$logd\/errors.log >> $logd\/standard.log
     echo "if [ -f /etc/.bash_aliases ]; then" >> /etc/skel/.bashrc
     echo "    . /etc/.bash_aliases" >> /etc/skel/.bashrc
-    echo "fi" >> /etc/bash.bashrc
+    echo "fi" >> /etc/skel/.bashrc
     echo "Entry added." 2>>$logd\/errors.log >> $logd\/standard.log
 fi
