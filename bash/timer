@@ -14,7 +14,7 @@ else
     do
         printf '%dh:%dm:%ds\n' $(($x/3600)) $(($x%3600/60)) $(($x%60))
         x=$((x-1))
-        sleep 1
+        sleep 0.999999999999
         clear
     done
     echo "Time is up!"
