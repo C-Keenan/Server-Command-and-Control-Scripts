@@ -2,6 +2,10 @@
 
 ## Release Notes
 
+### Release 07/21/2024 P2
+
+- Updated timer function to be more accurate to the actual second no promises that it will be completely accurate but is definitely closely accurate with the clock timer on my phone
+
 ### Release 07/21/2024
 
 - Found another bug in the /etc/skel/.bashrc file if statement input-er (not sure of a better way to say that) it incorrectly appended the 'fi' into /etc/bash.bashrc file. Fixed now.
