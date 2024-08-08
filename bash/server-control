@@ -45,6 +45,15 @@ then
       bash /usr/local/servinit/bash/backup
       sleep $stime
     done
+elif [ "$HOSTNAME" == "cameronOptMic" ]
+then
+    while true
+    do
+      bash /usr/local/servinit/bash/lpas
+      bash /usr/local/servinit/bash/dep-updater
+      bash /usr/local/servinit/bash/backup
+      sleep $stime
+    done
 else
     clear
     echo "$(base64 --decode /usr/local/servinit/messages/failure-to-launch.txt)"
