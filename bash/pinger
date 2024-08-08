@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+count="${1:-5}" #If the first variable is 'null/unset' set 'count' to '5' instead
+iporsite="${2:-1.1.1.1}" #If the second variable is 'null/unset' set 'iporsite' to '1.1.1.1' (cloudflare dns IP Address) instead
+slptime="${3:-0}" #If the third variable is 'null/unset' set 'slptime' to '0' instead
+iterations="${4:-0}" #If the fourth input is 'null/unset' set 'iterations' to '0' instead
+if [ $iterations -gt 0 ]
+then
+    while [ $iterations -gt 0 ]
+    do
+        ping -c $count $iporsite
+        iterations=$((iterations-1))
+        sleep $slptime
+    done
+else
+    ping -c $count $iporsite
+fi

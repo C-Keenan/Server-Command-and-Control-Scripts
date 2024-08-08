@@ -14,6 +14,12 @@ then
     else
         echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
     fi
+    if grep -Fq "alias pinger='bash /usr/local/servinit/bash/pinger'" "/etc/.bash_aliases"; then
+        als="alias pinger='bash /usr/local/servinit/bash/pinger'"
+        echo "$als already exists skipping" 2>>$logd\/errors.log >> $logd\/standard.log
+    else
+        echo "alias timer='bash /usr/local/servinit/bash/pinger'" >> /etc/.bash_aliases
+    fi
 elif ! [ -f /etc/.bash_aliases ]
 then
     touch /etc/.bash_aliases

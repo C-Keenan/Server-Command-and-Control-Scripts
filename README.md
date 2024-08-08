@@ -2,6 +2,12 @@
 
 ## Release Notes
 
+### Release 08/08/2024
+
+- New alias `pinger` by default it pings cloudflare dns server 5 times and then exits. You can change what happens during the run by typing `pinger <the-amount-of-pings-to-send> <the-ip-or-website-address> <the-amount-of-time-to-sleep-between-iterations> <the-amount-of-iterations>` eg. `pinger 5 1.1.1.1 0 1` which is the default behavior. You can also omit the last 2 inputs and get a single run eg. `pinger 5 1.1.1.1`
+
+- This alias was made to mimic how windows does ping as I didn't like how linux continuosly pinged the target until the user interupted it, which could trigger the target to block pings due to perceived malicious activity(<-assumption)
+
 ### Release 07/21/2024 P2
 
 - Updated timer function to be more accurate to the actual second no promises that it will be completely accurate but is definitely closely accurate with the clock timer on my phone
