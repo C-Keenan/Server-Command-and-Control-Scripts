@@ -45,7 +45,7 @@ then
       bash /usr/local/servinit/bash/backup
       sleep $stime
     done
-elif [ "$HOSTNAME" == "cameronOptMic" ]
+elif [ "$HOSTNAME" == "OptMicBackupPC" ]
 then
     while true
     do
