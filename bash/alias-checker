@@ -25,6 +25,7 @@ then
     touch /etc/.bash_aliases
     echo "alias restart='bash /usr/local/servinit/bash/restart-systemd-service'" >> /etc/.bash_aliases
     echo "alias timer='bash /usr/local/servinit/bash/timer'" >> /etc/.bash_aliases
+    echo "alias timer='bash /usr/local/servinit/bash/pinger'" >> /etc/.bash_aliases
 fi
 x=$(awk 'END{print NR}' /etc/passwd)
 while [ $x -gt 0 ]
