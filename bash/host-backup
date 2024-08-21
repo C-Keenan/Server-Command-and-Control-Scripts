@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-cp -r ${HOME}/docker ${HOME}/backup/${HOSTNAME} 2>>$logd\/errors.log >> $logd\/standard.log
+hostname=$(hostname)
+cp -r ${HOME}/docker ${HOME}/backup/$hostname 2>>$logd\/errors.log >> $logd\/standard.log
