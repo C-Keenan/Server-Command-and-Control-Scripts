@@ -9,7 +9,7 @@ then
       bash /usr/local/servinit/bash/backup
       sleep $stime
     done
-elif [ "$HOSTNAME" == "docker-server-2" ]
+elif [ "$HOSTNAME" == "docker-server-2.lollypopstealer.com" ]
 then
     while true
     do
@@ -56,6 +56,6 @@ then
     done
 else
     clear
-    echo "$(base64 --decode /usr/local/servinit/messages/failure-to-launch.txt)"
+    echo "$(base64 --decode /usr/local/servinit/messages/failure-to-launch.txt)" >> /var/log/servinit/errors.log
     exit 1
 fi
