@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 ip=$(nslookup prox1.lollypopstealer.com | grep Address | awk 'FNR==2{print $0}' | colrm 1 9)
 logd=/var/log/servinit
-hostname=$(hostname)
 echo "Starting copy of docker folder." 2>>$logd\/errors.log >> $logd\/standard.log
 cp -r /home/cameron/docker ${HOME}/backup 2>>$logd\/errors.log >> $logd\/standard.log
 echo "Starting 'secure' copy of docker folder." 2>>$logd\/errors.log >> $logd\/standard.log
-scp -r ${HOME}/backup ${USER}@$ip\:~/backup/$hostname 2>>$logd\/errors.log >> $logd\/standard.log
+scp -r ${HOME}/backup ${USER}@$ip\:~/backup/${HOSTNAME} 2>>$logd\/errors.log >> $logd\/standard.log
 echo "Erasing local backup folder as it is no longer needed and to ensure local disk space stays as free as possible." 2>>$logd\/errors.log >> $logd\/standard.log
 cd ${HOME}/backup && rm -r ./* 2>>$logd\/errors.log >> $logd\/standard.log
